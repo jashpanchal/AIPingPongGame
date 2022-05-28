@@ -16,3 +16,16 @@ body
 .heading h3{
     display:inline;
 }
+
+#startButton, #status{
+    font-size: 23px;
+    border: 2px solid black;
+}
+
+h4{
+    background-color: white;
+    width: 100%;
+    line-height: 2;
+    margin:0;
+    
+}
