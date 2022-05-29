@@ -24,11 +24,17 @@ var ball = {
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.parent('canvas');
+
+  video = createCapture(VIDEO);
+  video.size(700,600);
+  video.hide();
+
+  ml5.poseNet(video,modelLoaded);
 }
 
 
 function draw(){
-
+  
  background(0); 
 
  fill("black");
@@ -37,7 +43,9 @@ function draw(){
 
  fill("black");
  stroke("black");
+ 
  rect(0,0,20,700);
+ image(video,0,0,700,600)
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
@@ -66,6 +74,8 @@ function draw(){
    
    //function move call which in very important
     move();
+
+    
 }
 
 
@@ -162,4 +172,8 @@ function paddleInCanvas(){
   if(mouseY < 0){
     mouseY =0;
   }  
+}
+
+function modelLoaded(){
+  console.log("modelLoaded");
 }
