@@ -175,5 +175,5 @@ function paddleInCanvas(){
 }
 
 function modelLoaded(){
-  console.log("modelLoaded");
+  console.log("modelLoaded"); 
 }
