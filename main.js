@@ -1,6 +1,9 @@
+rightwristX = 0;
+rightwristY = 0;
+
+rightwristscore = 0;
 
 /*created by prashant shukla */
-
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -29,9 +32,20 @@ function setup(){
   video.size(700,600);
   video.hide();
 
-  ml5.poseNet(video,modelLoaded);
+  poseNet = ml5.poseNet(video,modelLoaded);
+  poseNet.on("pose", gotPoses);
 }
 
+function gotPoses(results){
+  if(results.length > 0 ){
+    console.log(results);
+    rightwristX = results[0].pose.rightWrist.x;
+    rightwristY = results[0].pose.rightWrist.y;
+
+    rightwristscore = results[0].pose.keypoints[10].score;
+    console.log("Right wrist X : " + rightwristX + ", Y : " + rightwristY + ", Score : " + rightwristscore);
+  }
+}
 
 function draw(){
   
@@ -45,7 +59,11 @@ function draw(){
  stroke("black");
  
  rect(0,0,20,700);
- image(video,0,0,700,600)
+ image(video,0,0,700,600);
+
+ stroke("red");
+ fill("red");
+ circle(rightwristX,rightwristY,20);
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
