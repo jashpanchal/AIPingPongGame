@@ -47,6 +47,10 @@ function gotPoses(results){
   }
 }
 
+function modelLoaded(){
+  console.log("modelLoaded");
+}
+
 function draw(){
   
  background(0); 
